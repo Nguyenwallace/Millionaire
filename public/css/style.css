@@ -1,0 +1,60 @@
+
+.cf:before,
+.cf:after {
+    content: "";
+    display: table;
+}
+
+.cf:after { clear:both; }
+
+/* For IE 6/7 (trigger hasLayout) */
+.cf { zoom: 1; }
+
+
+/* ---------- GENERAL ---------- */
+.round {
+    border-radius: 0.3125em; /* 5/16 */
+    -moz-border-radius: 0.3125em; /* 5/16 */
+    -webkit-border-radius: 0.3125em; /* 5/16 */
+}
+
+p {
+    margin-bottom: 1.25em; /* 20/16 */
+    color: #9498a1;
+}
+
+.fl { float: left; }
+.fr { float: right; }
+.cb { clear: both; }
+
+.half-size-column {
+    width: 48%;
+}
+
+.vertical-menu {
+    /*width: 200px;  Set a width if you like */
+}
+
+.vertical-menu a {
+   /* background-color: #eee;  Grey background color */
+   /*  color: black; Black text color */    
+    display: block; /* font-weight: bold;	color: black; Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+    background-color: #808080; /* Add a green color to the "active/current" link */
+    color: white;
+}
+.nav.navbar-nav.navbar-right li a {
+    color: blue;
+}
+.nav.navbar-default a {
+    color: black;
+}
+
