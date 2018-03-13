@@ -7,6 +7,7 @@ use App\Http\Requests\ProductFormRequest;
 use Illuminate\Support\Facades\DB;
 use App\Product;
 use App\Category;
+use App\Stock;
 use Response;
 
 class ProductController extends Controller
@@ -30,9 +31,18 @@ class ProductController extends Controller
 			$no = $_SESSION["productpage"];
 		}
 		//$customers= Customer::all()->paginate(10);
-		$products = DB::table('products')->paginate($no);	
+		$products = DB::table('products')->paginate($no);
+
+		$stocks = array();	
+
+		foreach ($products as $product){
+
+			$stocks[]= Stock::where('product_id', $product->id)->first()->quantity;
+
+		}
 			
-		return view('product.all_products', compact('products'));
+		return view('product.all_products', compact('products','stocks'));
+		
 	}	
 	
 	

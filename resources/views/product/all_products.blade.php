@@ -103,7 +103,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-									<?php $i=1;?>
+									<?php $i=0;?>
                                     @foreach ($products as $product)
                                     <tr class="gradeU">
 										<td>{{$i}}</td>
@@ -111,7 +111,7 @@
                                         <td>{{$product->name}}</td>
                                         <td>{{$product->content}}</td>
                                         <td>{{$product->price}}</td>
-                                        <td>100</td>
+                                        <td>{{$stocks[$i-1]}}</td>
                                         <td>Hôm qua</td>
                                         <td class="column-verticallineMiddle form-inline"><div class="dropdown">
 											<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><span class="glyphicon glyphicon-eye-open"></span>
