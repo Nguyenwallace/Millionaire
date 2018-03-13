@@ -9,5 +9,6 @@ class InvoiceController extends Controller
     //
 	public function getInvoice(){
 		echo "this is test Invoice";
+		echo "Test the internal TPAL";
 	}
 }
