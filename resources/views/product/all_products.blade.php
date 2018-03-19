@@ -105,14 +105,14 @@
                                 <tbody>
 									<?php $i=0;?>
                                     @foreach ($products as $product)
-                                    <tr class="gradeU">
-										<td>{{$i}}</td>
+                                    <tr class="gradeU">										
 										<?php $i++;?>
+										<td>{{$i}}</td>
                                         <td>{{$product->name}}</td>
                                         <td>{{$product->content}}</td>
                                         <td>{{$product->price}}</td>
                                         <td>{{$stocks[$i-1]}}</td>
-                                        <td>Hôm qua</td>
+                                        <td>{{$product->manu_date}}</td>
                                         <td class="column-verticallineMiddle form-inline"><div class="dropdown">
 											<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><span class="glyphicon glyphicon-eye-open"></span>
 											<span class="caret"></span></button>
@@ -171,7 +171,7 @@
 									
 							<!-- Button trigger modal -->
 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-								  Đăng ký khách mới (Boostrap Modal)
+								  Thêm sản phẩm mới (Boostrap Modal)
 								</button>
 
 								<!-- Modal -->
@@ -179,7 +179,7 @@
 								  <div class="modal-dialog" role="document">
 									<div class="modal-content">
 									  <div class="modal-header">
-										<h3 class="modal-title" id="exampleModalLabel">Thêm khách mới</h3>
+										<h3 class="modal-title" id="exampleModalLabel">Sản phẩm mới</h3>
 										<div id="addproduct">
 										<form class="form-horizontal" method="post" action="{!!url('admin/product/quickadd')!!}" enctype="multipart/form-data">	
 											<input type="hidden" name="_token" value="{!! csrf_token() !!}">
@@ -189,49 +189,37 @@
 												<div class="form-group">
 													<label for="name" class="col-lg-2 control-label">Tên:</label>
 													<div class="col-lg-5">
-													<input type="text" class="form-control" id="name" placeholder="Ví dụ: Nguyễn Văn A" name="name" size="35"/>			
+													<input type="text" class="form-control" id="name" placeholder="Ví dụ: Motor 25kW" name="name" size="35"/>			
 													</div>			
-												</div>
+												</div>											
 												
 												<div class="form-group">
-												  <label for="name" class="col-lg-2 control-label">Chọn Loại</label>
-												 <div class="col-lg-5">
-												 <select name="sel1" class="form-control">
-													<option class="form-control">Khách tiềm năng</option>
-													<option class="form-control">Khách từ đối thủ</option>
-													<option class="form-control">3</option>
-													<option class="form-control">4</option>
-												  </select>
-												  </div>
-												</div>
-												
-												<div class="form-group">
-													<label for="name" class="col-lg-2 control-label">Địa chỉ:</label>
+													<label for="name" class="col-lg-2 control-label">Mô tả:</label>
 													<div class="col-lg-5">
-													<input type="text" class="form-control" id="address" placeholder="Ví dụ: 72 Nguyễn Thị Minh Khai, HCMC" name="address"/>
+													<input type="text" class="form-control" id="content" placeholder="Ví dụ: Motor Trục đứng, Chống cháy nổ" name="content"/>
 													</div>
 												</div>
 												
 												<div class="form-group">
-													<label for="price" class="col-lg-2 control-label">Điện Thoại:</label>
+													<label for="price" class="col-lg-2 control-label">Giá tiền:</label>
 													<div class="col-lg-5">
-													<input type="text" class="form-control" id="telephone" placeholder="ví dụ: 0909362806" name="telephone" onkeypress="return numbersonly(event)"/>
+													<input type="text" class="form-control" id="price" placeholder="ví dụ: 320$" name="price" onkeypress="return numbersonly(event)"/>
 													</div>
 													
 												</div>
 												
 												<div class="form-group">
 													
-													<label for="name" class="col-lg-2 control-label">Email:</label>
+													<label for="name" class="col-lg-2 control-label">Danh mục</label>
 													<div class="col-lg-5">
-													<input type="text" class="form-control" id="email" placeholder="NguyenvanA@gmail.com" name="email"/>
+													<input type="text" class="form-control" id="category" placeholder="Motor Điện" name="category"/>
 													</div>
 												</div>
 														
 												<div class="form-group">
-													<label for="price" class="col-lg-2 control-label">Ngày tạo</label>
+													<label for="price" class="col-lg-2 control-label">Ngày Nhập kho</label>
 													<div class="col-lg-5">
-													<input type="text" class="form-control" id="created_date" placeholder="10/12/2017" name="created_date"/>
+													<input type="text" class="form-control" id="manu_date" placeholder="10/12/2017" name="manu_date"/>
 													</div>
 													
 												</div>
@@ -245,7 +233,7 @@
 												</div>											
 												<div class="modal-footer">
 													<button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
-													<button type="submit" class="btn btn-success">Lưu Khách Mới</button>
+													<button type="submit" class="btn btn-success">Thêm sản phẩm mới</button>
 												  </div>
 											</fieldset>
 										</form>

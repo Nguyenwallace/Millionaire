@@ -53,17 +53,18 @@ class ProductController extends Controller
 		return view('product.addView', compact('cates'));
 	}
 	
-	public function addProduct(ProductFormRequest $request){		
+	public function quickAddProduct(ProductFormRequest $request){		
 		// this is not updated
-		$cates = Category::all();		
+		//$cates = Category::all();		
 		$product= new Product();
 		$product->name= $request->get('name');
-		$product->category_id = $request->get('cate');
+		//$product->category_id = $request->get('cate');
+		$product->category_id = 1;
 		$product->price = $request->get('price');
 		$product->content=$request->get('content');
 		$product->manu_date=$request->get('manu_date');
 		$product->save();
-		return redirect('product/add')->with('status', 'New product name '.$product->name.' added');
+		return redirect('admin/products')->with('status', 'New product name '.$product->name.' added');
 		
 	}
 	

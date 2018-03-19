@@ -14,12 +14,14 @@
 Route::get('/', 'CustomerController@viewIndex');
 Route::group(array('prefix' => 'admin', 'middleware'=>'manager'), function () {
 	
-	Route::get('product', 'ProductController@view');
+	//Route::get('product', 'ProductController@view');
 	Route::get('products', 'ProductController@viewAll');
-	Route::get('product/show', 'ProductController@show');
+	Route::post('products', 'ProductController@viewAll');
+	//Route::get('product/show', 'ProductController@show');
 	Route::get('product/delete', 'ProductController@delete');
 	Route::get('product/add', 'ProductController@addView');
 	Route::post('product/add', 'ProductController@addProduct');
+	Route::post('product/quickadd', 'ProductController@quickAddProduct');
 	Route::get('autocomplete/category', 'ProductController@autocomplete');
 	Route::get('category/add', 'CategoryController@addView');
 	Route::post('category/add', 'CategoryController@addCategory');
