@@ -64,8 +64,11 @@ class ProductController extends Controller
 		$product->content=$request->get('content');
 		$product->manu_date=$request->get('manu_date');
 		$product->save();
-		return redirect('admin/products')->with('status', 'New product name '.$product->name.' added');
-		
+		$stock= new Stock();
+		$stock->product_id = $product->id;
+		$stock->quantity = $request->get('quantity');
+		$stock->save();
+		return redirect('admin/products')->with('status', 'New product name '.$product->name.' added');		
 	}
 	
 	public function show(){

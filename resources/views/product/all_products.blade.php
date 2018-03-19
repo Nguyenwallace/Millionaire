@@ -210,9 +210,9 @@
 												
 												<div class="form-group">
 													
-													<label for="name" class="col-lg-2 control-label">Danh mục</label>
+													<label for="name" class="col-lg-2 control-label">Số lượng</label>
 													<div class="col-lg-5">
-													<input type="text" class="form-control" id="category" placeholder="Motor Điện" name="category"/>
+													<input type="text" class="form-control" id="quantity" placeholder="100?" name="quantity"/>
 													</div>
 												</div>
 														
