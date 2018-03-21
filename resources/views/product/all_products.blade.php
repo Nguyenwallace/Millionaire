@@ -196,7 +196,7 @@
 												<div class="form-group">
 													<label for="name" class="col-lg-2 control-label">Mô tả:</label>
 													<div class="col-lg-5">
-													<input type="text" class="form-control" id="content" placeholder="Ví dụ: Motor Trục đứng, Chống cháy nổ" name="content"/>
+													<textarea name="content" class="form-control" id="content" rows="4" cols="50">	</textarea>
 													</div>
 												</div>
 												

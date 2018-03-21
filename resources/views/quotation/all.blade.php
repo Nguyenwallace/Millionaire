@@ -4,7 +4,6 @@
 <!--<script src="{{ asset('js/quote.js') }}"></script> -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
-
 @section('content')
 @include('jsblade/jsquote')
  <div id="page-wrapper">
@@ -172,88 +171,10 @@
 									<input type="button" class="btn btn-primary" value="Thêm khách mới (window.open)" onClick= 'window.open("{{ url("admin/customer/addcustomer")}}", "_blank", "toolbar=no, scrollbars=yes, resizable=yes, top=100,left=200,width=600, height=500");' />	
 									/new customer portion -->						
 								<a class="btn btn-primary" target="_blank" href="{{ url('admin/quotation/add')}}">Báo giá mới</a>	
-							<!-- Button trigger modal -->
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-								  Thêm Báo giá mới (Boostrap Modal)
-								</button>
+							<!-- Button trigger modal -->							
 
 								<!-- Modal -->
-								<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								  <div class="modal-dialog" role="document">
-									<div class="modal-content">
-									  <div class="modal-header">
-										<h3 class="modal-title" id="exampleModalLabel">Thêm báo giá mới</h3>
-										<div id="addcustomer">
-										<form class="form-horizontal" method="post" action="{!!url('admin/customer/quickadd')!!}" enctype="multipart/form-data">	
-											<input type="hidden" name="_token" value="{!! csrf_token() !!}">
-											<fieldset>
-												<legend></legend>											
-												<div class="form-group">
-													<label for="name" class="col-lg-2 control-label">Tên:</label>
-													<div class="col-lg-5">
-													<input type="text" class="form-control" id="name" placeholder="Ví dụ: Nguyễn Văn A" name="name" size="35"/>			
-													</div>			
-												</div>
-												
-												<div class="form-group">
-												  <label for="name" class="col-lg-2 control-label">Chọn Loại</label>
-												 <div class="col-lg-5">
-												 <select name="sel1" class="form-control">
-													<option class="form-control"></option>
-													
-												  </select>
-												  </div>
-												</div>
-												
-												<div class="form-group">
-													<label for="name" class="col-lg-2 control-label">Địa chỉ:</label>
-													<div class="col-lg-5">
-													<input type="text" class="form-control" id="address" placeholder="Ví dụ: 72 Nguyễn Thị Minh Khai, HCMC" name="address"/>
-													</div>
-												</div>
-												
-												<div class="form-group">
-													<label for="price" class="col-lg-2 control-label">Điện Thoại:</label>
-													<div class="col-lg-5">
-													<input type="text" class="form-control" id="telephone" placeholder="ví dụ: 0909362806" name="telephone" onkeypress="return numbersonly(event)"/>
-													</div>
-													
-												</div>
-												
-												<div class="form-group">
-													
-													<label for="name" class="col-lg-2 control-label">Email:</label>
-													<div class="col-lg-5">
-													<input type="text" class="form-control" id="email" placeholder="NguyenvanA@gmail.com" name="email"/>
-													</div>
-												</div>
-														
-												<div class="form-group">
-													<label for="price" class="col-lg-2 control-label">Ngày tạo</label>
-													<div class="col-lg-5">
-													<input type="text" class="form-control" id="created_date" placeholder="10/12/2017" name="created_date"/>
-													</div>
-													
-												</div>
-												
-												<div class="form-group">
-													
-													<label for="image" class="col-lg-2 control-label">Ảnh</label>
-													<div class="col-lg-5">
-														<input type="file" id="photo" name="photo" />	
-													</div>
-												</div>											
-												<div class="modal-footer">
-													<button type="button" class="btn btn-success" data-dismiss="modal">Đóng</button>
-													<button type="submit" class="btn btn-primary">Lưu Báo Giá Mới</button>
-												  </div>
-											</fieldset>
-										</form>
-										</div>
-									  </div>									  									  
-									</div>
-								  </div>
-								</div>
+								
 							</fieldset>
 						</div>	
 						</div>
