@@ -9,6 +9,7 @@ use App\Product;
 use App\Category;
 use App\Stock;
 use Response;
+use Auth;
 
 class ProductController extends Controller
 {
@@ -31,7 +32,8 @@ class ProductController extends Controller
 			$no = $_SESSION["productpage"];
 		}
 		//$customers= Customer::all()->paginate(10);
-		$products = DB::table('products')->paginate($no);
+		$user_id= Auth::user()->id;
+		$products = DB::table('products')->where('user_id', $user_id)->paginate($no);
 
 		$stocks = array();	
 
