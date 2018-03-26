@@ -13,6 +13,7 @@ use App\Http\Requests\QuotationFormRequest;
 use App\Quotation;
 use App\Qp;
 use App\Customer;
+use Auth;
 use Illuminate\Support\Facades\DB;
 //use Input;
 
@@ -32,13 +33,19 @@ class QuotationController extends Controller
 		
 		$results = array();
 		
-		$products = Product::where('name', 'LIKE', '%'.$term.'%')->take(5)->get();
-		
+		//$products = Product::where('name', 'LIKE', '%'.$term.'%')->take(5)->get();
+		$products = DB::table('products')->where('name', 'LIKE', '%'.$term.'%')->where('user_id', Auth::user()->id)->take(5)->get();
 		foreach ($products as $product)
 		{
 			//$results[] = [ 'name' => $cate->name, 'id'=> $cate->id];
 			//$results[] = ['name' => $cate->name];
 			$results[] = $product->name;
+			/*
+			if($product->user_id == Auth::user()->id)
+			{
+				$results[] = $product->name;
+			}
+			*/
 		}		
 		return Response::json($results);
 		//return response()->json($results);
@@ -93,6 +100,7 @@ class QuotationController extends Controller
 		$quote->tax = $tax;
 		$quote->discount = $discount;
 		$quote->quoted_date = $quoted_date;
+		$quote->user_id = Auth::user()->id;
 		$quote->save();
 		//$qp = array();
 		for ($i=0; $i < $noOfProduct; $i++){
@@ -120,7 +128,8 @@ class QuotationController extends Controller
 	
 	public function viewAll(){
 		
-		$quotes = Quotation::all();
+		$user_id = Auth::user()->id;
+		$quotes = Quotation::where('user_id', $user_id);
 		return view('quotation.all_quotations', compact('quotes'));
 	}
 	
@@ -187,6 +196,7 @@ class QuotationController extends Controller
 		$quote->tax = $tax;
 		$quote->discount = $discount;
 		$quote->quoted_date = $quoted_date;
+		$quote->user_id = Auth::user()->id;
 		$quote->save();
 		//$qp = array();
 		
@@ -258,7 +268,7 @@ class QuotationController extends Controller
 	
 	public function report(){
 		//
-		$quotes = Quotation::whereBetween('quoted_date',['2017-10-4', '2018-02-6'])->get();
+		$quotes = DB::table('quotations')->where('user_id', Auth::user()->id)->whereBetween('quoted_date',['2017-10-4', '2018-02-6'])->get();
 		
 		return view('report.report', compact('quotes'));
 	}
@@ -270,7 +280,7 @@ class QuotationController extends Controller
 		
 		if(!isset($request->customer)){
 		
-			$quotes = Quotation::whereBetween('quoted_date',[$dateFrom, $dateTo])->get();
+			$quotes = DB::table('quotations')->where('user_id', Auth::user()->id)->whereBetween('quoted_date',[$dateFrom, $dateTo])->get();
 			
 			return view('report.report', compact('quotes'));
 		}
@@ -282,7 +292,7 @@ class QuotationController extends Controller
 			//$quotes = Quotation::whereBetween('quoted_date',[$dateFrom, $dateTo])->where('cusEmail',$mail)->get();
 			//try to chose the month only whereMonth
 			//$quotes = Quotation::whereBetween('quoted_date',[$dateFrom, $dateTo])->whereMonth('quoted_date','11')->get();
-			$quotes = Quotation::whereBetween('quoted_date',[$dateFrom, $dateTo])->where('cusEmail',$mail)->get();
+			$quotes = DB::table('quotations')->where('user_id', Auth::user()->id)->whereBetween('quoted_date',[$dateFrom, $dateTo])->where('cusEmail',$mail)->get();
 
 			return view('report.report', compact('quotes'));
 			
@@ -303,7 +313,8 @@ class QuotationController extends Controller
 			$no = $_SESSION["quotepage"];
 		}
 		//$customers= Customer::all()->paginate(10);
-		$quotes = DB::table('quotations')->paginate($no);	
+		$user_id = Auth::user()->id;	
+		$quotes = DB::table('quotations')->where('user_id', $user_id)->paginate($no);	
 		foreach ($quotes as $quote)	{
 			$cusArray[]=Customer::where('email', $quote->cusEmail)->first()->name;
 			//$stock=Stock::where('product_id', $product->id)->first();

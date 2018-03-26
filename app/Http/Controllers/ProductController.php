@@ -65,6 +65,7 @@ class ProductController extends Controller
 		$product->price = $request->get('price');
 		$product->content=$request->get('content');
 		$product->manu_date=$request->get('manu_date');
+		$product->user_id = Auth::user()->id;
 		$product->save();
 		$stock= new Stock();
 		$stock->product_id = $product->id;
