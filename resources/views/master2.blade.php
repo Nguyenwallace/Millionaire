@@ -25,7 +25,9 @@
 
     <!-- Custom Fonts -->
     <link href="{{ asset('bd/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+     <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
 	<script src="{{ asset('bd/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

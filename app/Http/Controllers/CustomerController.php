@@ -8,6 +8,8 @@ use App\Http\Requests\CustomerFormRequest;
 
 use App\Customer;
 
+use Auth;
+
 use Response;
 
 use Illuminate\Support\Facades\DB;
@@ -35,6 +37,7 @@ class CustomerController extends Controller
 		$customer->telephone= $request->get('telephone');
 		$customer->email= $request->get('email');
 		$customer->photo= $photo;
+		$customer->user_id = Auth::user()->id;
 		$customer->save();
 		
 		return redirect('admin/customer/add')-> with('status','new customer '.$request->get('name').' created');
@@ -48,9 +51,9 @@ class CustomerController extends Controller
 		}
 		if(isset($_SESSION["cuspage"])){
 			$no = $_SESSION["cuspage"];
-		}
+		}		
 		//$customers= Customer::all()->paginate(10);
-		$customers = DB::table('customers')->paginate($no);			
+		$customers = DB::table('customers')->where('user_id', Auth::user()->id)->paginate($no);			
 		return view('customer.viewAll', compact('customers'));
 	}
 	
@@ -97,6 +100,7 @@ class CustomerController extends Controller
 		$customer->telephone= $request->get('telephone');
 		$customer->email= $request->get('email');
 		$customer->photo= $photo;
+		$customer->user_id = Auth::user()->id;
 		$customer->save();
 		
 		return redirect('admin\customer\all')->with('status', 'customer '.$customer->name. ' updated');
@@ -121,12 +125,16 @@ class CustomerController extends Controller
 			$photo = $file->getClientOriginalName();
 			$file->move(public_path() . '/images/customer/', $photo);
 		}
+		else {
+			$photo ="testPhoto";
+		}
 		$customer = new Customer;
 		$customer->address= $request->get('address');
 		$customer->name= $request->get('name');
 		$customer->telephone= $request->get('telephone');
 		$customer->email= $request->get('email');
 		$customer->photo= $photo;
+		$customer->user_id = Auth::user()->id;
 		$customer->save();
 		
 		return redirect('admin/customer/')-> with('status','Khách hàng mới tên '.$request->get('name').' đã được tạo');
@@ -145,7 +153,7 @@ class CustomerController extends Controller
 			$no = $_SESSION["cuspage"];
 		}
 		//$customers= Customer::all()->paginate(10);
-		$customers = DB::table('customers')->paginate($no);			
+		$customers = DB::table('customers')->where('user_id',Auth::user()->id)->paginate($no);			
 		return view('customer.all', compact('customers'));
 	}
 	
@@ -158,6 +166,7 @@ class CustomerController extends Controller
 		$customer->telephone= "0909876545";
 		$customer->email= $request->get('email');
 		$customer->photo= "test.gif";
+		$customer->user_id = Auth::user()->id;
 		$customer->save();
 
 		$result = ['message'=>"Đã Thêm Thành Công"];

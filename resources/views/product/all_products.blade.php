@@ -1,7 +1,7 @@
 @extends('master2')
 @section('title', 'Sản phẩm')
 @section('headscript')
-
+<script src="{{ asset('js/product1.js') }}"></script>
 @endsection
 @section('content')
  <div id="page-wrapper">
@@ -219,7 +219,7 @@
 												<div class="form-group">
 													<label for="price" class="col-lg-2 control-label">Ngày Nhập kho</label>
 													<div class="col-lg-5">
-													<input type="text" class="form-control" id="manu_date" placeholder="10/12/2017" name="manu_date"/>
+													<input type="text" class="form-control" id="manu_date" placeholder="2017-07-17" name="manu_date"/>
 													</div>
 													
 												</div>
