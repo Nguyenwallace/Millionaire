@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\SupplierFormRequest;
 use App\Supplier;
 use Response;
+use Auth;
+use DB;
 
 class SupplierController extends Controller
 {
@@ -18,12 +20,27 @@ class SupplierController extends Controller
 		$supplier->name = $request->get('name');
 		$supplier->email =  $request->get('email');
 		$supplier->address = $request->get('address');
-		$supplier->telephone = "0987876339";
+		$supplier->telephone = $request->get('telephone');
 		$supplier->save();
 
 		$result = ['message'=>"Đã thêm NCC vào"];
 
 		return Response::json($result);
+
+	}
+
+	public function quickAdd(SupplierFormRequest $request)
+	{
+
+		$supplier = new Supplier;		
+		$supplier->name = $request->get('name');
+		$supplier->email =  $request->get('email');
+		$supplier->address = $request->get('address');
+		$supplier->telephone = $request->get('telephone');
+		$supplier->user_id = Auth::user()->id;
+		$supplier->save();
+
+		return redirect('admin/supplier');
 
 	}
 
@@ -68,5 +85,30 @@ class SupplierController extends Controller
 		//return ($result);
 	} 
 
+	public function all(Request $request, $no=10)
+	{
+
+		//$supplier = Supplier::all();
+		session_start();		
+		if (isset($request->perpage)){
+			$_SESSION["suppage"] = $request->get('perpage');			
+		}
+		if(isset($_SESSION["suppage"])){
+			$no = $_SESSION["suppage"];
+		}
+		//$customers= Customer::all()->paginate(10);
+		$suppliers = DB::table('suppliers')->where('user_id',Auth::user()->id)->paginate($no);			
+		return view('supplier.all', compact('suppliers'));
+		
+	}
+
+	public function delete($id)
+	{
+		//will implement here
+		echo "test";
+	}
+
+		
+		
 
 }

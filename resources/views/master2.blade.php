@@ -345,7 +345,7 @@
                             <a href="#"><i class="fa fa-male fa-fw"></i><b> Nhà cung cấp</b><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">NCC Thường xuyên</a>
+                                    <a href="{{url('admin/supplier')}}">NCC Thường xuyên</a>
                                 </li>
 								<li>
                                     <a href="#">NCC Nhỏ phụ</a>

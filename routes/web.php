@@ -50,6 +50,9 @@ Route::group(array('prefix' => 'admin', 'middleware'=>'manager'), function () {
 	Route::post('ajax/cusquickadd', 'CustomerController@cusQuickAdd');
 	Route::post('ajax/supquickadd', 'SupplierController@supQuickAdd');
 	Route::get('supplier/test', 'SupplierController@test');
+	Route::post('supplier/quickadd', 'SupplierController@quickAdd');
+	Route::get('supplier', 'SupplierController@all' );
+	Route::get('supplier/{id?}/delete', 'SupplierController@delete' );
 	Route::get('/', 'CustomerController@viewIndex');	
 	//Test View Index
 	
